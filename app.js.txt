@@ -1,0 +1,45 @@
+// Проверка авторизации
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("Пользователь вошел:", user.email);
+        document.getElementById("userEmail").textContent = user.email;
+        initMap();
+    } else {
+        console.log("Пользователь не авторизован");
+        window.location.href = "login.html";
+    }
+});
+
+// Инициализация карты
+function initMap() {
+    ymaps.ready(() => {
+        const map = new ymaps.Map("map", {
+            center: [55.751244, 37.618423],
+            zoom: 10
+        });
+        console.log("Карта инициализирована");
+    });
+}
+
+// Выход из системы
+function logout() {
+    auth.signOut()
+        .then(() => console.log("Пользователь вышел"))
+        .catch(error => console.error("Ошибка выхода:", error));
+}
+
+// Тест Firestore
+async function testFirestore() {
+    try {
+        await db.collection("test").add({
+            message: "Тест записи", 
+            timestamp: new Date()
+        });
+        console.log("Данные записаны в Firestore");
+    } catch (error) {
+        console.error("Ошибка Firestore:", error);
+    }
+}
+
+// Первый запуск
+testFirestore();

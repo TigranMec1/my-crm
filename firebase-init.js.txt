@@ -1,0 +1,18 @@
+// Конфигурация Firebase (замените на свои данные из Firebase Console)
+const firebaseConfig = {
+    apiKey: "AIzaSyDdDm5M140s1TSzMLQijgYa65h386zTzoY",
+    authDomain: "crm-oasis-trade.firebaseapp.com",
+    projectId: "crm-oasis-trade",
+    storageBucket: "crm-oasis-trade.appspot.com",
+    messagingSenderId: "169596880976",
+    appId: "1:169596880976:web:9d75954a94c0e910e16955"
+};
+
+// Инициализация Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Инициализация сервисов
+const db = firebase.firestore();
+const auth = firebase.auth();
+
+console.log("Firebase подключен!");
